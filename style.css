@@ -16,6 +16,7 @@ body {
 header {
     padding: 1rem;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
 }
@@ -67,20 +68,11 @@ button {
 }
 
 .message {
-    padding: 10px 0;
+    margin-bottom: 10px;
 }
-
-.sender {
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 15px;
-}
-
-
-.user-message {
+.user-label {
     color: #000;
 }
-
-.bot-message {
-    color: #000;
+.bot-label {
+    color: #fe4542;
 }
