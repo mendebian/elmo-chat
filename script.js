@@ -1,3 +1,10 @@
+
+fetch('https://opensheet.elk.sh/1orow_yMJS1uYJwRC7OLU7JMJRy0gZGNyxgwVa8LvdBg/1')
+.then(response => response.json())
+.then(data => {
+    apiKey = data[0].apiKey
+})
+
 function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     const chatBox = document.getElementById('chat-box');
@@ -25,7 +32,7 @@ function getBotResponse(userInput) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + 'sk-proj-hlOAqvenNAKDbtet1qJgT3BlbkFJvmBWgJkVo4DGULVqWTGo'
+            'Authorization': 'Bearer ' + apiKey
 
         },
         body: JSON.stringify(data)
