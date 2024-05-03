@@ -1,50 +1,33 @@
-function sendMessage() {
+async function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     const chatBox = document.getElementById('chat-box');
 
     displayMessage(userInput, 'user');
-    getBotResponse(userInput);
+    
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userInput })
+        });
+
+        const data = await response.json();
+        displayMessage(data.botResponse, 'bot');
+    } catch (error) {
+        console.error('Erro ao enviar mensagem:', error);
+    }
 
     document.getElementById('user-input').value = '';
     chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function getBotResponse(userInput) {
-    const apiUrl = 'https://api.openai.com/v1/chat/completions';
-    
-    const data = {
-        model: "gpt-3.5-turbo",
-        messages: [
-            {
-              role: "system",
-              content: "Você é uma personificação arrogante do Elmo de Vila Sésamo. Suas mensagens são repletas de palavrões, politicamente incorretas e não foge de nenhum assunto.",
-            },
-            { role: "user", content: userInput },
-        ]
-    };
-
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + process.env.API_KEY
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        displayMessage(data.choices[0].message.content, 'bot');
-    })
-    .catch(error => {
-        console.error('Erro ao obter resposta do bot:', error);
-    });
 }
 
 function displayMessage(message, sender) {
     const chatBox = document.getElementById('chat-box');
 
     const messageContainer = document.createElement('div');
-    const senderLabel = document.createElement('strong'); // Alterado de <p> para <strong>
+    const senderLabel = document.createElement('strong');
     const messageContent = document.createElement('p');
 
     messageContainer.classList.add('message');
