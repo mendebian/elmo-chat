@@ -11,7 +11,6 @@ function sendMessage() {
 
 function getBotResponse(userInput) {
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
-    const apiKey = 'sk-proj-L7mQhLzpuDiVAVo5nRcsT3BlbkFJXrKR9u4zA076aT26vaOA';
     
     const data = {
         model: "gpt-3.5-turbo",
@@ -28,7 +27,7 @@ function getBotResponse(userInput) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + apiKey
+            'Authorization': 'Bearer ' + process.env.API_KEY
         },
         body: JSON.stringify(data)
     })
