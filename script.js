@@ -25,7 +25,7 @@ function getBotResponse(userInput) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + 'sk-proj-KlPZTgJNwqE0bCr4Y97PT3BlbkFJj0S69WPlHrmSyFyVNOg2'
+            'Authorization': 'Bearer ' + 'sk-proj-hlOAqvenNAKDbtet1qJgT3BlbkFJvmBWgJkVo4DGULVqWTGo'
 
         },
         body: JSON.stringify(data)
@@ -38,27 +38,6 @@ function getBotResponse(userInput) {
         console.error('Erro ao obter resposta do bot:', error);
     });
 }
-
-/* function displayMessage(message, sender) {
-    const chatBox = document.getElementById('chat-box');
-
-    const messageContainer = document.createElement('div');
-    const senderLabel = document.createElement('strong');
-    const messageContent = document.createElement('p');
-
-    messageContainer.classList.add('message');
-    //senderLabel.classList.add('sender');
-    messageContent.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-
-    //senderLabel.textContent = sender === 'user' ? 'Você' : 'Elmo';
-    //messageContent.textContent = message;
-    messageContent.textContent = sender === 'user' ? 'Você ' + message : 'Elmo ' + message;
-
-    messageContainer.appendChild(senderLabel);
-    messageContainer.appendChild(messageContent);
-    chatBox.appendChild(messageContainer);
-}
- */
 
 function displayMessage(message, sender) {
     const chatBox = document.getElementById('chat-box');
